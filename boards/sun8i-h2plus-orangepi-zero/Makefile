@@ -84,6 +84,12 @@ $(BUILD)/firmware.cpio: $(TAG)/armbian
             find lib/firmware -print0 | cpio -0 -H newc -R 0:0 -o \
 	) > $@
 
+$(BUILD)/extra.cpio: extra/etc/modules-load.d/extra.conf
+	( \
+            cd extra; \
+            find . -print0 | cpio -0 -H newc -R 0:0 -o \
+	) > $@
+
 $(BOOT): $(TAG)/boot
 $(TAG)/boot:
 	mkdir -p $(BOOT)
@@ -138,7 +144,7 @@ $(BOOT)/dtb/overlay/%.dtbo: $(TAG)/armbian $(TAG)/dtbo
 	cp $< $@
 
 # Combine the various modules to make one big cpio file
-$(BUILD)/combined.initrd: $(DEBIAN) $(BUILD)/modules.lzma $(BUILD)/firmware.lzma
+$(BUILD)/combined.initrd: $(DEBIAN) $(BUILD)/modules.lzma $(BUILD)/firmware.lzma $(BUILD)/extra.lzma
 	cat $^ >$@
 
 $(BOOT)/uInitrd: $(TAG)/boot

@@ -2,7 +2,7 @@
 # Build a Cubieboard install
 #
 
-DEBIAN_VER = stretch
+DEBIAN_VER = buster
 DEBIAN_ARCH = armhf
 
 # which uboot and device tree is this being built for

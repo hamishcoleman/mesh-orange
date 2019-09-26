@@ -6,14 +6,14 @@ DEBIAN_VER = stretch
 DEBIAN_ARCH = armhf
 
 # which uboot and device tree is this being built for
-ARMBIAN_UBOOT_PKG = linux-u-boot-orangepilite-dev=5.38
-ARMBIAN_KERNEL_PKG = linux-image-dev-sun8i=5.35
-UBOOT = linux-u-boot-dev-orangepilite_5.38_armhf
+ARMBIAN_UBOOT_PKG = linux-u-boot-orangepilite-default=5.85
+ARMBIAN_KERNEL_PKG = linux-image-next-sunxi=5.85
+UBOOT = linux-u-boot-orangepilite_5.85_armhf
 BOARD = sun8i-h3-orangepi-lite
 # FIXME - it would be nice if the uboot name was related to the dtb name
 
 SRC_SPL = $(ARMBIAN)/usr/lib/$(UBOOT)/u-boot-sunxi-with-spl.bin
-SRC_DTBDIR = $(ARMBIAN)/usr/lib/linux-image-dev-sun8i
+SRC_DTBDIR = $(ARMBIAN)/usr/lib/linux-image-next-sunxi
 SRC_FDT = $(SRC_DTBDIR)/$(BOARD).dtb
 SRC_DTBO = $(SRC_DTBDIR)/overlay
 

@@ -18,7 +18,7 @@ BOARDDIRS += boards/raspberrypi2/
 #BOARDDIRS += boards/sun4i-a10-cubieboard/
 BOARDDIRS += boards/sun7i-a20-bananapi/
 BOARDDIRS += boards/sun8i-h2-plus-orangepi-zero/
-#BOARDDIRS += boards/sun8i-h3-orangepi-lite/
+BOARDDIRS += boards/sun8i-h3-orangepi-lite/
 BOARDDIRS += boards/sun8i-v3s-licheepi-zero/
 SUBDIRS += $(BOARDDIRS)
 

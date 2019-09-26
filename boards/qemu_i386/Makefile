@@ -8,7 +8,7 @@
 #
 
 
-DEBIAN_VER = stretch
+DEBIAN_VER = buster
 DEBIAN_ARCH = i386
 
 BUILD_DEPENDS = qemu-system-x86

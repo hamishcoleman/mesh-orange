@@ -3,7 +3,7 @@
 #
 
 
-DEBIAN_VER = stretch
+DEBIAN_VER = buster
 DEBIAN_ARCH = armhf
 
 BUILD_DEPENDS = qemu-system-arm

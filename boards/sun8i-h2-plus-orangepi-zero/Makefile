@@ -6,8 +6,8 @@ DEBIAN_VER = stretch
 DEBIAN_ARCH = armhf
 
 # which uboot and device tree is this being built for
-ARMBIAN_UBOOT_PKG = linux-u-boot-orangepizero-default=5.31
-UBOOT = linux-u-boot-orangepizero_5.31_armhf
+ARMBIAN_UBOOT_PKG = linux-u-boot-orangepizero-default=5.90
+UBOOT = linux-u-boot-orangepizero_5.90_armhf
 BOARD = sun8i-h2-plus-orangepi-zero
 # FIXME - it would be nice if the uboot name was related to the dtb name
 

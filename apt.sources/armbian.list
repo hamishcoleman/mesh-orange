@@ -4,5 +4,5 @@
 # This is used to download u-boot binaries (and some kernel images)
 #
 
-deb http://apt.armbian.com stretch main
+deb http://apt.armbian.com buster main
 

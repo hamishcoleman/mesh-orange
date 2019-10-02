@@ -44,6 +44,9 @@ $(TOP_DIR)/debian/Makefile:
 %.lzma: %.cpio
 	lzma <$< >$@
 
+%.gz: %.cpio
+	gzip -9 <$< >$@
+
 clean:
 	rm -rf $(CLEAN_FILES)
 

@@ -60,7 +60,7 @@ BUILD_DEPENDS += mtools
 
 # convert the initrd into the special uboot container format
 %.uInitrd: %.initrd
-	mkimage -C lzma -A arm -T ramdisk -d $< $@
+	mkimage -C lzma -A arm -n uInitrd -T ramdisk -d $< $@
 
 %.scr: %.cmd
 	mkimage -C none -A arm -T script -d $< $@

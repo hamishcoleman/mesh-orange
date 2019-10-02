@@ -19,6 +19,35 @@ not be fooled by the fact that Raspbian uses an architecture called
 "armhf", they have simply (and confusingly) redefined their architecture
 to match their needs.
 
+Power Usage
+-----------
+
+During testing, I measured the power used for several different hardware
+configurations.
+
+| Setup                                                 |  Model   | Bootup | Idle   | Notes |
+|-------------------------------------------------------|----------|-------:|-------:| ----- |
+| Ramdisk, Ethernet plugged in                          | 4B v1.1  | <900mA |  580mA | 2 |
+| Ramdisk, Ethernet plugged in                          | 3B+ v1.3 |  903mA |  530mA | 1 |
+| Ramdisk, Ethernet plugged in                          | 3B v1.2  |  705mA |  295mA |
+| Ramdisk, Ethernet plugged in                          | 2B v1.1  | >370mA |  254mA |
+| Ramdisk, Ethernet unplugged                           | 2B v1.1  |        |  215mA |
+
+Note 1: When doing actual work, 3B+ was able to easily burst past the 903mA needed to bootup.
+
+Note 2: Currently, the Pi 4B has no network drivers, so these are preliminary numbers.
+
+* Bootup is the current that must be available for a successful boot
+  without crashing.  "Not crashing" is defined as can login and run status
+  commands with no error or freeze for 5 minutes.  Note that this is a bare
+  minimum value - add at least 10% for safe normal use.
+* Idle is the approximate current that the board uses after completing booting.
+* All tests were done with a power supply that never allows the device under
+  test to draw more current than allowed.  This ensures that the correct 5v
+  supply is always maintained, but is different to your usual Micro-USB plug
+  pack.  Due to this difference, it is possible that a smaller capacity
+  plugpack could be successful - but that the device would then be operating
+  out of specified limits.
 
 Raspbian vs Debian in the Raspberry Pi World
 --------------------------------------------

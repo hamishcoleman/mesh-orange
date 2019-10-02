@@ -51,6 +51,7 @@ $(TAG)/raspberrypi:
 	$(call tag,raspberrypi)
 
 # Add the kernel specific binaries to this cpio file
+# TODO - there are modules for three different kernels in here, remove two
 $(BUILD)/modules.cpio: $(TAG)/raspberrypi
 	( \
             cd $(RASPBERRYPI); \
@@ -90,8 +91,10 @@ $(BOOT)/%: $(RASPBERRYPI)/boot/% $(TAG)/boot
 # TODO - make this more automatic
 
 $(RASPBERRYPI)/boot/bootcode.bin: $(TAG)/raspberrypi
-$(RASPBERRYPI)/boot/fixup_cd.dat: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/start_cd.elf: $(TAG)/raspberrypi
+$(RASPBERRYPI)/boot/start4cd.elf: $(TAG)/raspberrypi
+$(RASPBERRYPI)/boot/fixup_cd.dat: $(TAG)/raspberrypi
+$(RASPBERRYPI)/boot/fixup4cd.dat: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/kernel7.img: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/COPYING.linux: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/LICENCE.broadcom: $(TAG)/raspberrypi
@@ -99,11 +102,14 @@ $(RASPBERRYPI)/boot/bcm2709-rpi-2-b.dtb: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/bcm2710-rpi-3-b.dtb: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/bcm2710-rpi-3-b-plus.dtb: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/bcm2710-rpi-cm3.dtb: $(TAG)/raspberrypi
+$(RASPBERRYPI)/boot/bcm2711-rpi-4-b.dtb: $(TAG)/raspberrypi
 
 BOOT_FILES = \
     $(BOOT)/bootcode.bin \
     $(BOOT)/start_cd.elf \
+    $(BOOT)/start4cd.elf \
     $(BOOT)/fixup_cd.dat \
+    $(BOOT)/fixup4cd.dat \
     $(BOOT)/kernel7.img \
     $(BOOT)/initrd \
     $(BOOT)/cmdline.txt \
@@ -114,6 +120,7 @@ BOOT_FILES = \
     $(BOOT)/bcm2710-rpi-3-b.dtb \
     $(BOOT)/bcm2710-rpi-3-b-plus.dtb \
     $(BOOT)/bcm2710-rpi-cm3.dtb \
+    $(BOOT)/bcm2711-rpi-4-b.dtb \
 
 boot: $(BOOT_FILES)
 

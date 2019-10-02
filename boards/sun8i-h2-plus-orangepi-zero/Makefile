@@ -169,8 +169,7 @@ $(TAG)/dtbo: $(TAG)/dtb
 	$(call tag,dtbo)
 
 $(BOOT)/dtb/overlay/%.dtbo: $(TAG)/armbian $(TAG)/dtbo
-$(BOOT)/dtb/overlay/%.dtbo: $(SRC_DTBO)/%.dtbo
-	cp $< $@
+	cp $(SRC_DTBO)/$(notdir $@) $@
 
 $(BOOT)/uInitrd: $(TAG)/boot
 $(BOOT)/uInitrd: $(BUILD)/combined.uInitrd

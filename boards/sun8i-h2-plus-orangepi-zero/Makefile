@@ -169,8 +169,8 @@ $(TAG)/dtbo: $(TAG)/dtb
 	$(call tag,dtbo)
 
 $(BOOT)/dtb/overlay/%.dtbo: $(TAG)/armbian $(TAG)/dtbo
-	touch $@ # FIXME
-	#cp $< $@
+$(BOOT)/dtb/overlay/%.dtbo: $(SRC_DTBO)/%.dtbo
+	cp $< $@
 
 $(BOOT)/uInitrd: $(TAG)/boot
 $(BOOT)/uInitrd: $(BUILD)/combined.uInitrd

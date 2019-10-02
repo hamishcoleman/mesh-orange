@@ -6,9 +6,9 @@ DEBIAN_VER = buster
 DEBIAN_ARCH = armhf
 
 # which uboot and device tree is this being built for
-ARMBIAN_UBOOT_PKG = linux-u-boot-orangepilite-default=5.85
-ARMBIAN_KERNEL_PKG = linux-image-next-sunxi=5.85
-UBOOT = linux-u-boot-orangepilite_5.85_armhf
+ARMBIAN_UBOOT_PKG = linux-u-boot-orangepilite-default=5.90
+ARMBIAN_KERNEL_PKG = linux-image-next-sunxi=5.90
+UBOOT = linux-u-boot-orangepilite_5.90_armhf
 BOARD = sun8i-h3-orangepi-lite
 # FIXME - it would be nice if the uboot name was related to the dtb name
 

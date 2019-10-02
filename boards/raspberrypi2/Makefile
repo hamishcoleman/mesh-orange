@@ -51,7 +51,10 @@ $(TAG)/raspberrypi:
 	$(call tag,raspberrypi)
 
 # Add the kernel specific binaries to this cpio file
-# TODO - there are modules for three different kernels in here, remove two
+# TODO
+# - there are sets of modules for three different kernels in here:
+#   - remove the pi1 modules
+#   - perhaps make two builds, one for pi2,3 and one for pi4
 $(BUILD)/modules.cpio: $(TAG)/raspberrypi
 	( \
             cd $(RASPBERRYPI); \
@@ -96,6 +99,7 @@ $(RASPBERRYPI)/boot/start4cd.elf: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/fixup_cd.dat: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/fixup4cd.dat: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/kernel7.img: $(TAG)/raspberrypi
+$(RASPBERRYPI)/boot/kernel7l.img: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/COPYING.linux: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/LICENCE.broadcom: $(TAG)/raspberrypi
 $(RASPBERRYPI)/boot/bcm2709-rpi-2-b.dtb: $(TAG)/raspberrypi
@@ -111,6 +115,7 @@ BOOT_FILES = \
     $(BOOT)/fixup_cd.dat \
     $(BOOT)/fixup4cd.dat \
     $(BOOT)/kernel7.img \
+    $(BOOT)/kernel7l.img \
     $(BOOT)/initrd \
     $(BOOT)/cmdline.txt \
     $(BOOT)/config.txt \

@@ -27,15 +27,13 @@ configurations.
 
 | Setup                                                 |  Model   | Bootup | Idle   | Notes |
 |-------------------------------------------------------|----------|-------:|-------:| ----- |
-| Ramdisk, Ethernet plugged in                          | 4B v1.1  | <900mA |  580mA | 2 |
+| Ramdisk, Gig Ethernet plugged in                      | 4B v1.1  | <900mA |  700mA |
 | Ramdisk, Ethernet plugged in                          | 3B+ v1.3 |  903mA |  530mA | 1 |
 | Ramdisk, Ethernet plugged in                          | 3B v1.2  |  705mA |  295mA |
 | Ramdisk, Ethernet plugged in                          | 2B v1.1  | >370mA |  254mA |
 | Ramdisk, Ethernet unplugged                           | 2B v1.1  |        |  215mA |
 
 Note 1: When doing actual work, 3B+ was able to easily burst past the 903mA needed to bootup.
-
-Note 2: Currently, the Pi 4B has no network drivers, so these are preliminary numbers.
 
 * Bootup is the current that must be available for a successful boot
   without crashing.  "Not crashing" is defined as can login and run status

@@ -27,6 +27,8 @@ configurations.
 
 | Setup                                                 |  Model   | Bootup | Idle   | Notes |
 |-------------------------------------------------------|----------|-------:|-------:| ----- |
+| Raspbian lite, Gig Ethernet plugged in                | 4B v1.1 4G | >900mA |  774mA |
+| Raspbian lite, Gig Ethernet unplugged                 | 4B v1.1 4G |        |  670mA |
 | Ramdisk, Gig Ethernet plugged in                      | 4B v1.1  | <900mA |  700mA |
 | Ramdisk, Ethernet plugged in                          | 3B+ v1.3 |  903mA |  530mA | 1 |
 | Ramdisk, Ethernet plugged in                          | 3B v1.2  |  705mA |  295mA |

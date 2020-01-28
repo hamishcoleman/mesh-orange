@@ -7,7 +7,7 @@ DEBIAN_ARCH ?= armhf
 CLEAN_FILES = $(TAG)
 
 # Mostly because this is a good place to find the xr819 firmware
-ARMBIAN_FIRMWARE_PKG = armbian-firmware
+ARMBIAN_FIRMWARE_REPO = https://github.com/armbian/firmware
 
 # firmware for wifi dongle (note, some overlap with armbian-firmware)
 RASPBIAN_FIRMWARE_PKG = firmware-brcm80211 firmware-atheros firmware-misc-nonfree
@@ -28,12 +28,11 @@ include $(TOP_DIR)/mk/common.mk
 
 firmware: $(BUILD)/firmware-raspbian.cpio $(BUILD)/firmware-armbian.cpio
 
-$(TAG)/armbian:
-	$(TOP_DIR)/scripts/get_deb $(DEBIAN_ARCH) armbian $(ARMBIAN) $(ARMBIAN_FIRMWARE_PKG)
-	$(call tag,armbian)
-
 # Add the kernel specific binaries to this cpio file
-$(BUILD)/firmware-armbian.cpio: $(TAG)/armbian
+$(BUILD)/firmware-armbian.cpio:
+	mkdir -p $(ARMBIAN)/lib/firmware
+	git clone --depth 1 $(ARMBIAN_FIRMWARE_REPO) $(ARMBIAN)/lib/firmware
+	test -d $(ARMBIAN)/lib/firmware/xr819
 	( \
             cd $(ARMBIAN); \
             find lib/firmware -print0 | cpio -0 -H newc -R 0:0 -o \

@@ -6,16 +6,17 @@ DEBIAN_VER = buster
 DEBIAN_ARCH = armhf
 
 # which uboot and device tree is this being built for
-ARMBIAN_UBOOT_PKG = linux-u-boot-orangepizero-default=5.90
-ARMBIAN_KERNEL_PKG = linux-image-next-sunxi=5.90
-UBOOT = linux-u-boot-orangepizero_5.90_armhf
+ARMBIAN_UBOOT_PKG = linux-u-boot-orangepizero-current=20.08
+ARMBIAN_KERNEL_PKG = linux-image-current-sunxi=20.08.2
+ARMBIAN_DTB_PKG = linux-dtb-current-sunxi=20.08.2
+UBOOT = linux-u-boot-current-orangepizero_20.08_armhf
 BOARD = sun8i-h2-plus-orangepi-zero
 # FIXME - it would be nice if the uboot name was related to the dtb name
 
-MODULE_VER = 4.19.57-sunxi
+MODULE_VER = 5.8.6-sunxi
 
 SRC_SPL = $(ARMBIAN)/usr/lib/$(UBOOT)/u-boot-sunxi-with-spl.bin
-SRC_DTBDIR = $(ARMBIAN)/usr/lib/linux-image-next-sunxi
+SRC_DTBDIR = $(ARMBIAN)/usr/lib/linux-image-current-sunxi
 SRC_FDT = $(SRC_DTBDIR)/$(BOARD).dtb
 SRC_DTBO = $(SRC_DTBDIR)/overlay
 
@@ -60,8 +61,8 @@ MODULES += \
     lib/modules/$(MODULE_VER)/kernel/net/ipv4/netfilter/ip_tables.ko \
     lib/modules/$(MODULE_VER)/kernel/net/netfilter \
     lib/modules/$(MODULE_VER)/kernel/net/netfilter/x_tables.ko \
-    lib/modules/$(MODULE_VER)/kernel/net/wireguard \
-    lib/modules/$(MODULE_VER)/kernel/net/wireguard/wireguard.ko \
+    lib/modules/$(MODULE_VER)/kernel/drivers/net/wireguard \
+    lib/modules/$(MODULE_VER)/kernel/drivers/net/wireguard/wireguard.ko \
 
 # USB
 MODULES += \
@@ -79,8 +80,6 @@ MODULES += \
 MODULES += \
     lib/modules/$(MODULE_VER)/kernel/drivers/cpufreq \
     lib/modules/$(MODULE_VER)/kernel/drivers/cpufreq/cpufreq-dt.ko \
-    lib/modules/$(MODULE_VER)/kernel/drivers/thermal \
-    lib/modules/$(MODULE_VER)/kernel/drivers/thermal/thermal_sys.ko \
 
 MODULES += \
     lib/modules/$(MODULE_VER)/kernel/drivers/iio \
@@ -88,7 +87,7 @@ MODULES += \
     lib/modules/$(MODULE_VER)/kernel/drivers/iio/adc/sun4i-gpadc-iio.ko \
     lib/modules/$(MODULE_VER)/kernel/drivers/iio/industrialio.ko \
     lib/modules/$(MODULE_VER)/kernel/drivers/thermal \
-    lib/modules/$(MODULE_VER)/kernel/drivers/thermal/sun8i_ths.ko \
+    lib/modules/$(MODULE_VER)/kernel/drivers/thermal/sun8i_thermal.ko \
 
 CLEAN_FILES += $(TAG) $(ARMBIAN) $(BOOT)
 
@@ -117,7 +116,7 @@ test:
 # Everything below this line is HW specific Armbian u-Boot startup code
 
 $(TAG)/armbian:
-	$(TOP_DIR)/scripts/get_deb $(DEBIAN_ARCH) armbian $(ARMBIAN) $(ARMBIAN_UBOOT_PKG) $(ARMBIAN_KERNEL_PKG)
+	$(TOP_DIR)/scripts/get_deb $(DEBIAN_ARCH) armbian $(ARMBIAN) $(ARMBIAN_UBOOT_PKG) $(ARMBIAN_KERNEL_PKG) $(ARMBIAN_DTB_PKG)
 	$(call tag,armbian)
 
 # Add the kernel specific binaries to this cpio file

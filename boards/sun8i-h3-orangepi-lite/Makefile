@@ -6,14 +6,15 @@ DEBIAN_VER = buster
 DEBIAN_ARCH = armhf
 
 # which uboot and device tree is this being built for
-ARMBIAN_UBOOT_PKG = linux-u-boot-orangepilite-default=5.90
-ARMBIAN_KERNEL_PKG = linux-image-next-sunxi=5.90
-UBOOT = linux-u-boot-orangepilite_5.90_armhf
+ARMBIAN_UBOOT_PKG = linux-u-boot-orangepilite-current=20.08
+ARMBIAN_KERNEL_PKG = linux-image-current-sunxi=20.08
+ARMBIAN_DTB_PKG = linux-dtb-current-sunxi=20.08
+UBOOT = linux-u-boot-current-orangepilite_20.08_armhf
 BOARD = sun8i-h3-orangepi-lite
 # FIXME - it would be nice if the uboot name was related to the dtb name
 
 SRC_SPL = $(ARMBIAN)/usr/lib/$(UBOOT)/u-boot-sunxi-with-spl.bin
-SRC_DTBDIR = $(ARMBIAN)/usr/lib/linux-image-next-sunxi
+SRC_DTBDIR = $(ARMBIAN)/usr/lib/linux-image-current-sunxi
 SRC_FDT = $(SRC_DTBDIR)/$(BOARD).dtb
 SRC_DTBO = $(SRC_DTBDIR)/overlay
 
@@ -47,7 +48,7 @@ test:
 # Everything below this line is HW specific Armbian u-Boot startup code
 
 $(TAG)/armbian:
-	$(TOP_DIR)/scripts/get_deb $(DEBIAN_ARCH) armbian $(ARMBIAN) $(ARMBIAN_UBOOT_PKG) $(ARMBIAN_KERNEL_PKG)
+	$(TOP_DIR)/scripts/get_deb $(DEBIAN_ARCH) armbian $(ARMBIAN) $(ARMBIAN_UBOOT_PKG) $(ARMBIAN_KERNEL_PKG) $(ARMBIAN_DTB_PKG)
 	$(call tag,armbian)
 
 # Add the kernel specific binaries to this cpio file

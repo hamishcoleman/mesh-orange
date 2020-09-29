@@ -43,7 +43,7 @@ $(BUILD)/root.fs: $(CPIO_FILES)
 	done
 	sudo mkdir $@.dir/@.orig/btrfs
 	sudo rm $@.dir/@.orig/init.d/01welcome.sh
-	sudo ln -s /init $@.dir/@.orig/sbin/init
+	sudo ln -fs /init $@.dir/@.orig/sbin/init
 	sudo btrfs subvolume snapshot $@.dir/@.orig/ $@.dir/@/
 	sudo btrfs subvolume set-default $$(sudo btrfs subvolume list $@.dir/ |sort |tail -1 |cut -d" " -f2) $@.dir
 	sudo umount $@.dir

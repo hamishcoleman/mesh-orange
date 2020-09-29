@@ -31,7 +31,7 @@ PART_SIZE_ROOT_MEGS ?= 700
 
 $(BUILD)/root.fs: $(CPIO_FILES)
 	truncate --size=$$(( $(PART_SIZE_ROOT_MEGS) ))M $@.tmp
-	mkfs.btrfs -L root $@.tmp
+	mkfs.btrfs -f -L root $@.tmp
 	mkdir -p $@.dir
 	sudo mount -o loop $@.tmp $@.dir
 	sudo btrfs subvolume create $@.dir/@.orig

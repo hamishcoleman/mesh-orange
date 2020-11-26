@@ -45,9 +45,10 @@ test:
 
 # Everything below this line is HW specific setup
 
-$(BUILD)/zero_imager.zip:
+$(BUILD)/zero_imager.zip: zero_imager.sum
 	mkdir -p build
-	wget -O $@ https://licheepizero.us/downloads/zero_imager.zip
+	wget --no-check-certificate -O $@ https://licheepizero.us/downloads/zero_imager.zip
+	sha256sum -c zero_imager.sum
 	touch $@
 
 $(ZIP): $(BUILD)/zero_imager.zip
